@@ -11,18 +11,15 @@
 /* Sections stay visible without JavaScript; the layout script opts them in. */
 [data-reveal="pending"] {
   opacity: 0;
-  filter: blur(3px);
-  transform: translateY(44px) scale(0.985);
+  transform: translateY(44px);
 }
 
 [data-reveal="visible"] {
   opacity: 1;
-  filter: blur(0);
-  transform: translateY(0) scale(1);
+  transform: translateY(0);
   transition:
     opacity 800ms var(--motion-ease),
-    transform 800ms var(--motion-ease),
-    filter 650ms ease;
+    transform 800ms var(--motion-ease);
 }
 
 .hero-copy > * {
@@ -46,9 +43,7 @@
 }
 
 .hero-portrait {
-  animation:
-    hero-portrait-in 950ms 180ms var(--motion-ease) both,
-    portrait-float 6s 1.3s ease-in-out infinite alternate;
+  animation: hero-portrait-in 950ms 180ms var(--motion-ease) both;
 }
 
 .hero-glow {
@@ -62,32 +57,23 @@
 @keyframes hero-item-in {
   from {
     opacity: 0;
-    filter: blur(4px);
     transform: translateY(32px);
   }
   to {
     opacity: 1;
-    filter: blur(0);
-    transform: translateY(0);
+    transform: none;
   }
 }
 
 @keyframes hero-portrait-in {
   from {
     opacity: 0;
-    filter: blur(5px);
     transform: translateY(42px) scale(0.94);
   }
   to {
     opacity: 1;
-    filter: blur(0);
-    transform: translateY(0) scale(1);
+    transform: none;
   }
-}
-
-@keyframes portrait-float {
-  from { transform: translateY(0); }
-  to { transform: translateY(-10px); }
 }
 
 @keyframes glow-drift {
