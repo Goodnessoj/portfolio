@@ -1,0 +1,96 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/sections/Footer.astro';
+import { certifications } from '../data/certifications';
+
+const certificationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Goodness Ojonuba certifications',
+  itemListElement: certifications.map((certification, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    item: {
+      '@type': 'EducationalOccupationalCredential',
+      name: certification.name,
+      description: certification.description,
+      credentialCategory: certification.level,
+      url: certification.credentialUrl,
+      recognizedBy: {
+        '@type': 'Organization',
+        name: certification.issuer,
+      },
+    },
+  })),
+};
+---
+
+<Layout
+  title="Certifications | Goodness Ojonuba - Cloud & DevOps Engineer"
+  description="Verified AWS certifications earned by Goodness Ojonuba, including AWS Solutions Architect Associate and AWS Cloud Practitioner."
+>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(certificationSchema)} />
+  <Navbar />
+  <main class="px-4 pb-16 pt-24 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <header class="mx-auto max-w-3xl text-center">
+        <p class="text-sm font-semibold uppercase tracking-[0.2em] text-orange-500">Verified credentials</p>
+        <h1 class="mt-4 text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl dark:text-white">
+          Professional <span class="text-orange-500">Certifications</span>
+        </h1>
+        <p class="mt-5 text-lg leading-relaxed text-slate-500 dark:text-slate-400">
+          AWS credentials that validate my cloud foundations and my ability to design secure, resilient infrastructure.
+        </p>
+      </header>
+
+      <section aria-label="AWS certifications" class="mt-14 grid gap-8 lg:grid-cols-2">
+        {certifications.map((certification) => (
+          <article class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-all hover:-translate-y-1 hover:border-orange-500/40 hover:shadow-xl dark:border-slate-800 dark:bg-slate-900">
+            <div class="flex min-h-64 items-center justify-center bg-gradient-to-br from-slate-100 via-white to-orange-50 p-8 dark:from-slate-950 dark:via-slate-900 dark:to-orange-950/20">
+              <img
+                src={certification.image}
+                alt={`${certification.name} badge`}
+                width="672"
+                height="352"
+                loading="eager"
+                decoding="async"
+                class="h-auto w-full max-w-sm"
+              />
+            </div>
+            <div class="p-7">
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="inline-flex items-center gap-1.5 rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-400">
+                  <svg class="h-3.5 w-3.5" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                  Verified on Credly
+                </span>
+                <span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-600 dark:bg-slate-800 dark:text-slate-300">{certification.level}</span>
+              </div>
+
+              <h2 class="mt-5 text-2xl font-bold leading-tight text-slate-900 dark:text-white">{certification.name}</h2>
+              <p class="mt-2 text-sm font-medium text-orange-500">{certification.issuer}</p>
+              <p class="mt-4 leading-relaxed text-slate-600 dark:text-slate-300">{certification.description}</p>
+
+              <div class="mt-5 flex flex-wrap gap-2">
+                {certification.capabilities.map((capability) => (
+                  <span class="rounded-md bg-slate-100 px-2.5 py-1 text-xs text-slate-600 dark:bg-slate-800 dark:text-slate-300">{capability}</span>
+                ))}
+              </div>
+
+              <a
+                href={certification.credentialUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="mt-7 inline-flex items-center gap-2 rounded-lg bg-orange-500 px-5 py-3 font-semibold text-white transition-colors hover:bg-orange-600"
+              >
+                Verify credential
+                <svg class="h-4 w-4" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4m-2-10h6m0 0v6m0-6L10 14" /></svg>
+              </a>
+            </div>
+          </article>
+        ))}
+      </section>
+    </div>
+  </main>
+  <Footer />
+</Layout>

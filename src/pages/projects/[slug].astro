@@ -1,0 +1,187 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/sections/Footer.astro';
+import ArchitectureFlow from '../../components/case-studies/ArchitectureFlow.astro';
+import { caseStudies, type CaseStudy } from '../../data/caseStudies';
+
+export function getStaticPaths() {
+  return caseStudies.map((study) => ({
+    params: { slug: study.slug },
+    props: { study },
+  }));
+}
+
+type Props = {
+  study: CaseStudy;
+};
+
+const { study } = Astro.props;
+const otherStudies = caseStudies.filter((candidate) => candidate.slug !== study.slug);
+const projectSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'CreativeWork',
+  name: study.title,
+  description: study.summary,
+  author: {
+    '@type': 'Person',
+    name: 'Goodness Ojonuba',
+  },
+  url: new URL(`/projects/${study.slug}`, Astro.site),
+  codeRepository: study.repositories.map((repo) => repo.url),
+  keywords: study.tech.join(', '),
+};
+---
+
+<Layout title={`${study.title} | Goodness Ojonuba`} description={study.summary}>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(projectSchema)} />
+  <Navbar />
+  <main class="pb-16 pt-24">
+    <article>
+      <header class="px-4 pb-16 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-5xl">
+          <a href="/projects" class="inline-flex items-center gap-2 text-sm font-medium text-slate-500 transition-colors hover:text-orange-500 dark:text-slate-400">
+            <svg class="h-4 w-4" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+            Back to projects
+          </a>
+
+          <div class="mt-10 max-w-4xl">
+            <p class="text-sm font-semibold uppercase tracking-[0.2em] text-orange-500">Engineering case study</p>
+            <p class="mt-4 text-sm font-medium text-slate-500 dark:text-slate-400">{study.kicker}</p>
+            <h1 class="mt-4 text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl dark:text-white">{study.title}</h1>
+            <p class="mt-6 max-w-3xl text-lg leading-relaxed text-slate-600 sm:text-xl dark:text-slate-300">{study.summary}</p>
+          </div>
+
+          <div class="mt-8 flex flex-wrap gap-2">
+            {study.tech.map((item) => (
+              <span class="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300">{item}</span>
+            ))}
+          </div>
+
+          <div class="mt-8 flex flex-wrap items-center gap-3">
+            {study.repositories.map((repo) => (
+              <a href={repo.url} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 rounded-lg bg-slate-900 px-5 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-85 dark:bg-white dark:text-slate-900">
+                {repo.label}
+                <svg class="h-4 w-4" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4m-2-10h6m0 0v6m0-6L10 14" /></svg>
+              </a>
+            ))}
+            {study.demo ? (
+              <a href={study.demo.url} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 rounded-lg bg-orange-500 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-orange-600">
+                {study.demo.label}
+              </a>
+            ) : (
+              <span class="inline-flex items-center gap-2 rounded-lg border border-slate-200 px-4 py-3 text-sm text-slate-500 dark:border-slate-700 dark:text-slate-400">
+                <span class="h-2 w-2 rounded-full bg-slate-400" aria-hidden="true"></span>
+                No permanent live demo
+              </span>
+            )}
+          </div>
+        </div>
+      </header>
+
+      <section aria-label="Project metrics" class="border-y border-slate-200 bg-white px-4 py-8 sm:px-6 lg:px-8 dark:border-slate-800 dark:bg-slate-900">
+        <div class="mx-auto grid max-w-5xl grid-cols-2 gap-6 lg:grid-cols-4">
+          {study.metrics.map((metric) => (
+            <div>
+              <p class="text-3xl font-bold text-orange-500">{metric.value}</p>
+              <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">{metric.label}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <div class="mx-auto max-w-5xl space-y-20 px-4 py-16 sm:px-6 lg:px-8">
+        <section class="grid gap-8 lg:grid-cols-2">
+          <div class="rounded-2xl border border-slate-200 bg-white p-7 dark:border-slate-800 dark:bg-slate-900">
+            <p class="text-sm font-semibold uppercase tracking-wider text-orange-500">The problem</p>
+            <h2 class="mt-3 text-2xl font-bold text-slate-900 dark:text-white">What needed to be solved</h2>
+            <p class="mt-4 leading-relaxed text-slate-600 dark:text-slate-300">{study.problem}</p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 bg-white p-7 dark:border-slate-800 dark:bg-slate-900">
+            <p class="text-sm font-semibold uppercase tracking-wider text-orange-500">My role</p>
+            <h2 class="mt-3 text-2xl font-bold text-slate-900 dark:text-white">What I owned</h2>
+            <p class="mt-4 leading-relaxed text-slate-600 dark:text-slate-300">{study.role}</p>
+          </div>
+        </section>
+
+        <section>
+          <p class="text-sm font-semibold uppercase tracking-wider text-orange-500">Architecture</p>
+          <h2 class="mt-3 text-3xl font-bold text-slate-900 dark:text-white">How the system fits together</h2>
+          <div class="mt-8">
+            <ArchitectureFlow stages={study.architecture} label={study.architectureLabel} />
+          </div>
+        </section>
+
+        <section>
+          <p class="text-sm font-semibold uppercase tracking-wider text-orange-500">Key decisions</p>
+          <h2 class="mt-3 text-3xl font-bold text-slate-900 dark:text-white">Engineering choices and trade-offs</h2>
+          <div class="mt-8 grid gap-5 sm:grid-cols-2">
+            {study.decisions.map((decision, index) => (
+              <div class="rounded-xl border border-slate-200 bg-white p-6 dark:border-slate-800 dark:bg-slate-900">
+                <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-orange-100 text-sm font-bold text-orange-600 dark:bg-orange-950/40 dark:text-orange-400">{index + 1}</div>
+                <h3 class="mt-4 text-lg font-bold text-slate-900 dark:text-white">{decision.title}</h3>
+                <p class="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400">{decision.detail}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section>
+          <p class="text-sm font-semibold uppercase tracking-wider text-orange-500">{study.evidence.eyebrow}</p>
+          <div class="mt-3 grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
+            <div>
+              <h2 class="text-3xl font-bold text-slate-900 dark:text-white">{study.evidence.title}</h2>
+              <p class="mt-4 leading-relaxed text-slate-600 dark:text-slate-300">{study.evidence.description}</p>
+              <a href={study.evidence.sourceUrl} target="_blank" rel="noopener noreferrer" class="mt-5 inline-flex items-center gap-2 font-semibold text-orange-500 transition-colors hover:text-orange-600">
+                Inspect the source file
+                <svg class="h-4 w-4" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4m-2-10h6m0 0v6m0-6L10 14" /></svg>
+              </a>
+            </div>
+            <figure class="overflow-hidden rounded-2xl border border-slate-700 bg-slate-950 shadow-2xl">
+              <div class="flex items-center gap-2 border-b border-slate-800 bg-slate-900 px-4 py-3">
+                <span class="h-3 w-3 rounded-full bg-red-500" aria-hidden="true"></span>
+                <span class="h-3 w-3 rounded-full bg-amber-400" aria-hidden="true"></span>
+                <span class="h-3 w-3 rounded-full bg-emerald-500" aria-hidden="true"></span>
+                <span class="ml-2 font-mono text-xs text-slate-400">{study.evidence.filename}</span>
+              </div>
+              <pre class="overflow-x-auto p-5 text-sm leading-7 text-slate-300"><code class={`language-${study.evidence.language}`}>{study.evidence.code}</code></pre>
+              <figcaption class="sr-only">Code excerpt from {study.evidence.filename}</figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <section class="grid gap-8 lg:grid-cols-[1.25fr_0.75fr]">
+          <div>
+            <p class="text-sm font-semibold uppercase tracking-wider text-orange-500">Measurable outcome</p>
+            <h2 class="mt-3 text-3xl font-bold text-slate-900 dark:text-white">What the implementation demonstrates</h2>
+            <ul class="mt-7 space-y-4">
+              {study.outcomes.map((outcome) => (
+                <li class="flex gap-3 text-slate-600 dark:text-slate-300">
+                  <svg class="mt-1 h-5 w-5 shrink-0 text-orange-500" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                  <span class="leading-relaxed">{outcome}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <aside class="rounded-2xl border border-amber-500/30 bg-amber-500/10 p-6">
+            <h2 class="font-bold text-slate-900 dark:text-white">Current state & next step</h2>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600 dark:text-slate-300">{study.currentState}</p>
+          </aside>
+        </section>
+
+        <section class="border-t border-slate-200 pt-14 dark:border-slate-800">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white">Explore another case study</h2>
+          <div class="mt-6 grid gap-4 sm:grid-cols-2">
+            {otherStudies.map((candidate) => (
+              <a href={`/projects/${candidate.slug}`} class="group rounded-xl border border-slate-200 bg-white p-5 transition-all hover:border-orange-500/50 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900">
+                <p class="text-xs font-semibold uppercase tracking-wider text-orange-500">{candidate.kicker}</p>
+                <h3 class="mt-2 font-bold text-slate-900 transition-colors group-hover:text-orange-500 dark:text-white">{candidate.title}</h3>
+              </a>
+            ))}
+          </div>
+        </section>
+      </div>
+    </article>
+  </main>
+  <Footer />
+</Layout>

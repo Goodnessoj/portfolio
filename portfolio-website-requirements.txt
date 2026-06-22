@@ -1,0 +1,408 @@
+================================================================================
+PORTFOLIO WEBSITE REQUIREMENTS DOCUMENT
+================================================================================
+Owner:        Goodness Ojonuba
+GitHub:       https://github.com/Goodnessoj
+LinkedIn:     https://www.linkedin.com/in/sy-goodness/
+Twitter/X:    https://twitter.com/synotrixx
+Dev.to Blog:  https://dev.to/goodnessoj
+Medium Blog:  https://medium.com/@goodnessojonuba
+Location:     Nigeria (Open to Remote Collaborations)
+Role:         Cloud & DevOps Engineer | AWS Solutions Architect Associate
+Date:         2026-06-18
+================================================================================
+
+1. PURPOSE & GOALS
+--------------------------------------------------------------------------------
+Build a modern, fast, mobile-responsive personal portfolio website that:
+- Showcases technical projects (DevOps, Cloud, IaC, CI/CD)
+- Demonstrates writing & thought leadership via blog posts
+- Enables recruiters/hiring managers to assess skills quickly
+- Drives inbound interest (job opportunities, collaborations)
+- Is easy to maintain and deploy (DevOps best practices)
+
+TARGET AUDIENCE:
+- Hiring managers & recruiters for DevOps/Cloud roles
+- Technical peers & open-source collaborators
+- Conference/meetup organizers
+
+================================================================================
+
+2. TECH STACK RECOMMENDATIONS
+--------------------------------------------------------------------------------
+Option A (Static Site - Recommended):
+  - Framework: Astro / Next.js / Hugo (SSG)
+  - Styling:   Tailwind CSS
+  - Hosting:   CloudFront + S3 (fits your skillset) OR GitHub Pages / Vercel
+  - Domain:    Custom domain (e.g., goodnessojonuba.dev or similar)
+  - CI/CD:     GitHub Actions for automated deploy on push to main
+
+Option B (Single-Page Application):
+  - Framework: React / Vue / Svelte
+  - Styling:   Tailwind CSS
+  - Hosting:   Vercel / Netlify / AWS Amplify
+
+DEPLOYMENT REQUIREMENTS:
+- Infrastructure as Code (Terraform preferred — aligns with your expertise)
+- HTTPS/SSL enabled
+- CDN for global performance
+- CI/CD pipeline (GitHub Actions)
+- Cost monitoring / budget alerts
+
+================================================================================
+
+3. WEBSITE STRUCTURE & PAGES
+--------------------------------------------------------------------------------
+
+3.1 HOMEPAGE ("/")
+--------------------------------------------------------------------------------
+HERO SECTION:
+- Full name: "Goodness Ojonuba"
+- Professional tagline: "Cloud & DevOps Engineer | AWS Solutions Architect Associate"
+- Short elevator pitch (2-3 lines):
+  "I design, build, and automate scalable cloud infrastructure. From Terraform 
+   modules to CI/CD pipelines, I turn complex infrastructure into reliable,
+   repeatable code."
+- Professional headshot/avatar
+- Clear CTA buttons:
+  * "View My Projects" → scrolls to Projects section or /projects
+  * "Read My Blog"    → links to /blog or dev.to
+  * "Contact Me"      → scrolls to Contact section
+  * "Download Resume" → downloads PDF resume
+- Social links: GitHub, LinkedIn, Twitter/X, Dev.to
+
+ABOUT ME SECTION:
+- Professional summary (4-5 sentences) covering:
+  * DevOps & Cloud Engineering background
+  * AWS Solutions Architect Associate certification
+  * Infrastructure as Code (Terraform, Ansible)
+  * CI/CD & automation expertise
+  * Open to remote collaborations
+- Location: Nigeria, Open to Remote
+- Availability status: "Open to work" / "Available for collaborations"
+
+TECH STACK / SKILLS SECTION:
+- Visual cloud/DevOps skill badges/icons:
+  * Cloud: AWS (primary), Azure
+  * IaC: Terraform, Ansible, CloudFormation
+  * CI/CD: GitHub Actions, Jenkins, GitLab CI
+  * Containers: Docker, Kubernetes
+  * Languages: Python, Bash, HCL, JavaScript, TypeScript, C
+  * Monitoring: CloudWatch, Prometheus, Grafana (if applicable)
+  * Tools: Git, Linux, Nginx, Jira
+- Optional: Interactive skill proficiency rings/bars
+
+FEATURED PROJECTS SECTION:
+- Display top 3 featured projects prominently (hero cards / large cards)
+- Below featured: show remaining 2 projects in a standard grid
+- Each card shows:
+  * Project name(s)
+  * 1-2 line description
+  * Primary tech/language badges
+  * GitHub stars & forks count
+  * Links: "View Code" (GitHub), "Live Demo" (if applicable)
+- Feature the top 3 (most forks + strongest DevOps signal):
+  1. book-review-terraform-iac  — Full infrastructure (11 forks) ⭐
+  2. platform-petclinic + spring-petclinic-microservices — Terraform platform +
+     Spring Cloud microservices (10 forks) ⭐
+  3. infra-epicbook + app-deploy-epicbook — EpicBook infrastructure + app
+     deployment (8 forks combined) ⭐
+- Remaining 2 projects in grid:
+  4. epicbook-iac-ansible       — Ansible-based IaC (1 fork)
+  5. Ultimate-Agentic-DevOps-with-Claude-Code — Agentic DevOps workflow with
+     Claude Code (0 forks)
+
+LATEST BLOG POSTS SECTION:
+- Pull from dev.to API or manually curate
+- Show 3-4 most recent articles with:
+  * Title
+  * Short excerpt (2 lines)
+  * Reading time
+  * Publication date
+  * Tags (dev.to topics)
+- Articles to feature:
+  1. "Agentic DevOps: Letting AI Subagents Audit Terraform Infrastructure" (Mar 2026)
+  2. "Deploying a Static Website on Azure Using Blob Storage" (Mar 2026)
+  3. "The Complete Guide: Deploying a Static Site on AWS using Nginx and User Data" (Feb 2026)
+  4. "More Than Just a Board: Why My First Jira Sprint Was a Lesson in DevOps" (Feb 2026)
+- Link: "View All Articles on Dev.to →"
+
+MEDIUM ARTICLES TO FEATURE (medium.com/@goodnessojonuba):
+- 5 articles, 3 followers
+- Articles to feature:
+  1. "Understanding Kubernetes Architecture: Control Plane, Worker Nodes, Pods, Services, and More" (Apr 27, 2026)
+  2. "Containerizing a React App with Docker: From Single-Stage to Multi-Stage Builds" (Apr 22, 2026)
+  3. "From 'It Works on My Machine' to Reliable Deployments: My CI/CD Journey with Azure DevOps" (Apr 13, 2026)
+  4. "Setting Up Ansible the Right Way: From Quick Install to Production-Ready" (Apr 4, 2026)
+  5. "From ClickOps to Terraform: My First Real Experience with Infrastructure as Code" (Mar 20, 2026)
+- Link: "Read More on Medium →"
+
+CALL-TO-ACTION SECTION:
+- "Let's Build Something Together"
+- Buttons: "Contact Me" / "Schedule a Call" / "View Resume"
+
+3.2 PROJECTS PAGE ("/projects")
+--------------------------------------------------------------------------------
+- Complete project gallery (all 39+ repos)
+- Filter by category:
+  * Infrastructure as Code (Terraform, Ansible)
+  * CI/CD & Automation
+  * Cloud Deployments (AWS, Azure)
+  * Web Development
+  * Learning & Tutorials
+- Search by keyword
+- Sort by: recently updated, most starred, most forked
+- Each project card:
+  * Name, description, language(s), stats (stars, forks)
+  * GitHub link
+  * Tech stack badges
+  * "Read More" → detailed project page (optional)
+
+3.3 BLOG PAGE ("/blog")
+--------------------------------------------------------------------------------
+- List all dev.to articles (manual or API-driven)
+- Categories/tags filter
+- Search functionality
+- Each post preview: title, excerpt, date, reading time, tags
+- Links open on dev.to (or embed if using dev.to API)
+
+3.4 ABOUT PAGE ("/about")
+--------------------------------------------------------------------------------
+- Extended professional biography
+- Career journey/timeline
+- Certifications (AWS SAA, etc.)
+- Education background
+- Key achievements & metrics
+- Testimonials (if available)
+
+3.5 CONTACT PAGE ("/contact")
+--------------------------------------------------------------------------------
+- Contact form: Name, Email, Subject, Message
+- Email: [your professional email]
+- Social links: GitHub, LinkedIn, Twitter/X, Dev.to, Medium
+- Location: Nigeria (Open to Remote)
+- Optional: Calendly/meeting scheduler link
+
+3.6 RESUME DOWNLOAD
+--------------------------------------------------------------------------------
+- "Download My Resume" button (PDF)
+- Available from navbar and hero section
+- Keep PDF version in sync with website content
+
+================================================================================
+
+4. DESIGN & UX REQUIREMENTS
+--------------------------------------------------------------------------------
+THEME:
+- Dark mode default (modern DevOps aesthetic)
+- Light mode toggle (accessibility)
+- Color palette suggestion:
+  * Primary:   Deep blue/navy (#1a237e) or AWS orange (#ff9900)
+  * Secondary: Teal/cyan (#00bcd4) for accents
+  * Dark bg:   #0f172a (slate-900)
+  * Light bg:  #f8fafc (slate-50)
+  * Text:      slate-100 on dark, slate-900 on light
+
+TYPOGRAPHY:
+- Clean, modern sans-serif (Inter, Geist, or Outfit)
+- Mono font for code/tech terms (JetBrains Mono, Fira Code)
+- Readable sizing, WCAG AA compliant contrast
+
+RESPONSIVENESS:
+- Mobile-first design
+- Breakpoints: mobile <640px, tablet 640-1024px, desktop >1024px
+- Hamburger menu on mobile
+- Touch-friendly tap targets (min 44px)
+
+PERFORMANCE:
+- Lighthouse score: 90+ across all categories
+- Core Web Vitals: LCP <2.5s, FID <100ms, CLS <0.1
+- Optimize images (WebP, lazy loading)
+- Minify JS/CSS
+- Use CDN
+
+ANIMATIONS:
+- Subtle, purposeful animations only:
+  * Fade-in on scroll (IntersectionObserver)
+  * Card hover effects (scale/shadow)
+  * Skill bar fill animation
+- Respect prefers-reduced-motion
+
+ACCESSIBILITY:
+- WCAG 2.1 AA compliance
+- Keyboard navigation
+- ARIA labels
+- Alt text on all images
+- Focus indicators
+
+================================================================================
+
+5. SEO & SOCIAL REQUIREMENTS
+--------------------------------------------------------------------------------
+META TAGS:
+- Title: "Goodness Ojonuba | Cloud & DevOps Engineer"
+- Description: Professional summary with keywords (DevOps, AWS, Terraform, etc.)
+- Open Graph tags for LinkedIn/Twitter sharing
+- Twitter Card: summary_large_image
+- Canonical URLs
+
+STRUCTURED DATA:
+- JSON-LD Person schema
+- Article schema for blog posts
+- Project schema for portfolio pieces
+
+SITEMAP & ROBOTS:
+- XML sitemap
+- robots.txt
+- RSS feed for blog (dev.to provides this)
+
+ANALYTICS:
+- Google Analytics 4 or Plausible (privacy-friendly)
+- Track: page views, project clicks, resume downloads, contact form submissions
+
+================================================================================
+
+6. CONTENT REQUIREMENTS
+--------------------------------------------------------------------------------
+
+GITHUB STATS (auto-sync via GitHub API or manual update):
+- Public repos: 39
+- Followers: 19
+- Following: 22
+- Total stars across repos
+- Language breakdown visualization
+
+DEV.TO STATS (optional):
+- Total articles: 7
+- Total reactions
+- Total comments
+
+MEDIUM STATS (optional):
+- Total articles: 5
+- Followers: 3
+
+CONTENT TO PREPARE:
+□ Professional headshot (square, high-res, transparent bg preferred)
+□ 2-3 sentence bio variations (hero, about, LinkedIn)
+□ Detailed project descriptions for top 8 projects
+□ Resume/CV PDF
+□ Contact email
+
+================================================================================
+
+7. DEPLOYMENT & INFRASTRUCTURE REQUIREMENTS
+--------------------------------------------------------------------------------
+RECOMMENDED: AWS S3 + CloudFront (showcases your IaC skills)
+
+INFRASTRUCTURE:
+- S3 bucket (static website hosting, private)
+- CloudFront distribution (HTTPS, custom domain)
+- Route 53 (DNS, custom domain)
+- ACM (SSL certificate)
+- Optional: WAF (basic rules)
+
+IaC:
+- Terraform module for entire stack
+- Include cost estimates
+- State backend (S3 + DynamoDB)
+- Remote state locking
+
+CI/CD PIPELINE (GitHub Actions):
+- Trigger: push to main branch
+- Steps:
+  1. Install dependencies
+  2. Build static site
+  3. Run tests (lighthouse, accessibility)
+  4. Deploy to S3 (aws s3 sync)
+  5. Invalidate CloudFront cache
+  6. Comment deploy URL on PR (if PR preview)
+
+BRANCHING:
+- main: production
+- develop/staging: preview environment (optional)
+- Feature branches for changes
+
+MONITORING:
+- Uptime monitoring (UptimeRobot / CloudWatch Synthetics)
+- Cost alerts (AWS Budgets)
+- Performance monitoring (Real User Monitoring)
+
+================================================================================
+
+8. MAINTENANCE REQUIREMENTS
+--------------------------------------------------------------------------------
+- Update GitHub stats monthly (or automate via API)
+- Add new projects as they ship
+- Cross-post new dev.to articles automatically (RSS → webhook)
+- Annual design/tech stack review
+- SSL certificate auto-renewal (ACM handles this)
+- Dependency updates (Dependabot)
+
+================================================================================
+
+9. NICE-TO-HAVE FEATURES
+--------------------------------------------------------------------------------
+- GitHub contribution graph embed
+- Terminal/easter egg (type "help" for commands)
+- Dark/light mode toggle with persistence
+- Blog comments via Giscus (GitHub Discussions)
+- Medium RSS feed integration (medium.com/feed/@goodnessojonuba)
+- Project demo videos/GIFs
+- Testimonials carousel
+- "What I'm learning now" section
+- Live GitHub activity feed
+- Newsletter signup (ConvertKit/Substack)
+- Multi-language support (future)
+
+================================================================================
+
+10. SUCCESS METRICS
+--------------------------------------------------------------------------------
+- Page load time < 2 seconds
+- Lighthouse score > 90
+- Mobile usability score 100
+- Resume downloads per month
+- Contact form submissions
+- GitHub profile visits from portfolio
+- Dev.to article referrals
+- Recruiter outreach increase
+
+================================================================================
+
+11. PROJECTS TO FEATURE (RANKED)
+--------------------------------------------------------------------------------
+#   REPO                                    TECH     FORKS  HIGHLIGHT
+--------------------------------------------------------------------------------
+1   book-review-terraform-iac               HCL      11     Full IaC project ⭐ FEATURED
+2   platform-petclinic                      HCL      10     Platform engineering ⭐ FEATURED
+    spring-petclinic-microservices          N/A       0     Connected repo (microservices)
+3   infra-epicbook                          HCL       5     Current project infra ⭐ FEATURED
+    app-deploy-epicbook                     Jinja     3     Connected repo (app deployment)
+4   epicbook-iac-ansible                    HCL       1     Ansible practice
+5   Ultimate-Agentic-DevOps-with-Claude-Code  N/A       0    Agentic DevOps with Claude Code
+
+Note: Connected repos are part of the same project (e.g., infra + app).
+DevOps-Projects is a curated learning collection, not a personal project,
+so it is not showcased here. Other repos (my-react-app, gotto_job,
+Lamp-stack, A-Static-Website-on-AWS-using-Terraform-Iac, petclinic-Infra,
+terraform-react-azure) may be linked on GitHub but are not featured.
+
+================================================================================
+
+12. NEXT STEPS
+--------------------------------------------------------------------------------
+□ Decide tech stack (Astro + Tailwind recommended)
+□ Register custom domain
+□ Set up GitHub repo for portfolio source code
+□ Create design mockup/wireframe
+□ Write/curate content (bio, project descriptions)
+□ Build MVP (homepage + projects)
+□ Set up CI/CD pipeline
+□ Deploy infrastructure with Terraform
+□ Test across devices/browsers
+□ Add analytics
+□ Launch & share
+
+================================================================================
+END OF REQUIREMENTS DOCUMENT
+================================================================================

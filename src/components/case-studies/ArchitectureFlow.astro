@@ -1,0 +1,37 @@
+---
+import type { ArchitectureStage } from '../../data/caseStudies';
+
+type Props = {
+  stages: ArchitectureStage[];
+  label: string;
+};
+
+const { stages, label } = Astro.props;
+const accents = [
+  'border-orange-500/40 bg-orange-500/10',
+  'border-sky-500/40 bg-sky-500/10',
+  'border-violet-500/40 bg-violet-500/10',
+  'border-emerald-500/40 bg-emerald-500/10',
+  'border-amber-500/40 bg-amber-500/10',
+  'border-rose-500/40 bg-rose-500/10',
+];
+---
+
+<figure class="rounded-2xl border border-slate-200 bg-slate-100/70 p-5 sm:p-8 dark:border-slate-700 dark:bg-slate-950/70">
+  <div class="flex flex-col items-stretch gap-3 lg:flex-row lg:items-center lg:gap-2" role="img" aria-label={label}>
+    {stages.map((stage, index) => (
+      <>
+        <div class={`min-w-0 flex-1 rounded-xl border p-4 text-center ${accents[index % accents.length]}`}>
+          <p class="font-semibold text-slate-900 dark:text-white">{stage.label}</p>
+          <p class="mt-1 text-xs leading-relaxed text-slate-500 dark:text-slate-400">{stage.detail}</p>
+        </div>
+        {index < stages.length - 1 && (
+          <svg class="mx-auto h-5 w-5 shrink-0 rotate-90 text-slate-400 lg:rotate-0" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        )}
+      </>
+    ))}
+  </div>
+  <figcaption class="mt-5 text-sm leading-relaxed text-slate-500 dark:text-slate-400">{label}</figcaption>
+</figure>

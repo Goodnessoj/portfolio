@@ -1,43 +1,104 @@
-# Astro Starter Kit: Minimal
+# Portfolio Website
 
-```sh
-npm create astro@latest -- --template minimal
+A modern, fast, and responsive personal portfolio website built with Astro and Tailwind CSS, and deployed free through GitHub Pages.
+
+## Tech Stack
+
+- **Framework**: [Astro](https://astro.build/) (Static Site Generation)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Hosting**: GitHub Pages
+- **CI/CD**: GitHub Actions
+- **Node.js**: 22+
+
+## Project Structure
+
 ```
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
+├── .github/workflows/     # CI/CD pipelines
+├── public/                # Static assets
 ├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+│   ├── components/        # Reusable components
+│   │   ├── sections/      # Page sections (Hero, About, etc.)
+│   │   └── ui/            # UI components
+│   ├── data/              # Content data (projects, articles)
+│   ├── layouts/           # Page layouts
+│   ├── pages/             # Route pages
+│   └── styles/            # Global styles
+├── terraform/             # Legacy AWS IaC reference; not used by deployment
+└── portfolio-website-requirements.txt
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Pages
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+| Page | Route | Description |
+|------|-------|-------------|
+| Home | `/` | Hero, About, Skills, Featured Projects, Blog, Contact |
+| About | `/about` | Extended biography, certifications |
+| Projects | `/projects` | Curated projects and engineering case studies |
+| Certifications | `/certifications` | Verified AWS credentials |
+| Blog | `/blog` | Dev.to and Medium articles |
+| Contact | `/contact` | Contact form and social links |
+| 404 | `/404` | Not found page |
 
-Any static assets, like images, can be placed in the `public/` directory.
+## Getting Started
 
-## 🧞 Commands
+### Prerequisites
 
-All commands are run from the root of the project, from a terminal:
+- Node.js 22+ (use [fnm](https://github.com/Schniz/fnm) or [nvm](https://github.com/nvm-sh/nvm))
+- npm 10+
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+### Install Dependencies
 
-## 👀 Want to learn more?
+```bash
+npm install
+```
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+### Development Server
+
+```bash
+npm run dev
+```
+Visit `http://localhost:4321`
+
+### Build for Production
+
+```bash
+npm run build
+```
+
+Output is in the `dist/` directory.
+
+## Deployment
+
+The GitHub Actions workflow at `.github/workflows/deploy-pages.yml` builds and deploys the site whenever changes reach `main`. It can also be started manually from the Actions tab.
+
+### First-time GitHub setup
+
+1. Open the repository's **Settings → Pages**.
+2. Select **GitHub Actions** as the deployment source.
+3. Set the custom domain to `goodnessoj.site`.
+4. Configure the domain's DNS records for GitHub Pages.
+5. Enable **Enforce HTTPS** after GitHub validates the DNS records.
+
+No AWS credentials or repository secrets are required.
+
+> The `terraform/` directory is retained only as a legacy infrastructure reference. It is not executed by CI. Running `terraform apply` manually may create chargeable AWS resources.
+
+## Features
+
+- ✅ Dark/Light mode toggle
+- ✅ Mobile-first responsive design
+- ✅ SEO optimized with structured data (JSON-LD)
+- ✅ Open Graph / Twitter Cards
+- ✅ Custom 404 page
+- ✅ Contact form (Formspree integration)
+- ✅ Dark mode persistence (localStorage)
+- ✅ Smooth scroll navigation
+- ✅ Hover animations and transitions
+
+## License
+
+MIT
+
+---
+
+Built with ❤️ by Goodness Ojonuba

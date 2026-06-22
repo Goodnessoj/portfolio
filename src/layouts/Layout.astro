@@ -1,0 +1,101 @@
+---
+import '../styles/global.css';
+
+type Props = {
+  title?: string;
+  description?: string;
+  image?: string;
+};
+
+const { 
+  title = 'Goodness Ojonuba | Cloud & DevOps Engineer',
+  description = 'Cloud & DevOps Engineer | AWS Solutions Architect Associate | Infrastructure as Code | CI/CD | Automation',
+  image = '/images/goodness-ojonuba-portrait.webp'
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const siteURL = Astro.site?.toString().replace(/\/$/, '') ?? 'https://goodnessoj.site';
+---
+
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="generator" content={Astro.generator} />
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" href="/favicon.ico" />
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href={canonicalURL} />
+  
+  <!-- Primary Meta Tags -->
+  <title>{title}</title>
+  <meta name="title" content={title} />
+  <meta name="description" content={description} />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonicalURL} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={new URL(image, Astro.site)} />
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content={canonicalURL} />
+  <meta property="twitter:title" content={title} />
+  <meta property="twitter:description" content={description} />
+  <meta property="twitter:image" content={new URL(image, Astro.site)} />
+  
+  <!-- JSON-LD Person Schema -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Goodness Ojonuba",
+    "jobTitle": "Cloud & DevOps Engineer",
+    "url": siteURL,
+    "image": `${siteURL}/images/goodness-ojonuba-portrait.webp`,
+    "sameAs": [
+      "https://github.com/Goodnessoj",
+      "https://www.linkedin.com/in/sy-goodness/",
+      "https://twitter.com/synotrixx",
+      "https://dev.to/goodnessoj",
+      "https://medium.com/@goodnessojonuba"
+    ],
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Self-Employed"
+    },
+    "knowsAbout": [
+      "Cloud Computing",
+      "DevOps",
+      "AWS",
+      "Terraform",
+      "Ansible",
+      "Kubernetes",
+      "Docker",
+      "CI/CD",
+      "Infrastructure as Code"
+    ]
+  })} />
+  <slot name="head" />
+  
+  <!-- Theme Script (runs before paint) -->
+  <script is:inline>
+    (function() {
+      const theme = localStorage.getItem('theme');
+      if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    })();
+  </script>
+</head>
+<body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300">
+  <slot />
+</body>
+</html>

@@ -1,0 +1,88 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/sections/Footer.astro';
+---
+
+<Layout 
+  title="About | Goodness Ojonuba - Cloud & DevOps Engineer"
+  description="Learn about Goodness Ojonuba's journey from IT Support to Cloud & DevOps Engineering."
+>
+  <Navbar />
+  <main class="pt-24 pb-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-4xl mx-auto">
+      <h1 class="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-6">
+        About <span class="text-orange-500">Me</span>
+      </h1>
+      
+      <div class="prose dark:prose-invert prose-slate max-w-none">
+        <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+          I'm Goodness Ojonuba, a Cloud and DevOps Engineer based in Nigeria, open to remote collaborations worldwide. 
+          My journey into tech started with IT Support, which gave me a deep appreciation for reliable systems and 
+          user-centric infrastructure — a perspective I now bring to every cloud project I work on.
+        </p>
+        
+        <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">My Journey</h2>
+        <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+          Transitioning from IT Support to Cloud Engineering wasn't just a career pivot — it was a natural evolution. 
+          Supporting end-users taught me that infrastructure failu
+        </p>
+        
+        <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">What I Do</h2>
+        <ul class="space-y-3 text-slate-600 dark:text-slate-300">
+          <li class="flex items-start gap-3">
+            <svg class="w-6 h-6 text-orange-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            <span><strong>Infrastructure as Code:</strong> Build and manage AWS/Azure infrastructure using Terraform, Ansible, and CloudFormation.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <svg class="w-6 h-6 text-orange-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            <span><strong>CI/CD Pipelines:</strong> Automate build, test, and deployment workflows with GitHub Actions, Jenkins, and Azure DevOps.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <svg class="w-6 h-6 text-orange-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            <span><strong>Container Orchestration:</strong> Deploy and manage containerized applications with Docker, Kubernetes, and ECS.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <svg class="w-6 h-6 text-orange-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            <span><strong>Agentic DevOps:</strong> Experiment with AI-powered workflows using Claude Code for infrastructure auditing and automation.</span>
+          </li>
+        </ul>
+        
+        <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Certifications</h2>
+        <div class="bg-slate-50 dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700">
+          <div class="flex items-center gap-4">
+            <div class="w-14 h-14 rounded-xl bg-orange-100 dark:bg-orange-950/30 flex items-center justify-center">
+              <svg class="w-8 h-8 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-slate-900 dark:text-white">AWS Solutions Architect – Associate</h3>
+              <p class="text-sm text-slate-500 dark:text-slate-400">Amazon Web Services</p>
+            </div>
+          </div>
+        </div>
+        <a href="/certifications" class="mt-4 inline-flex items-center gap-2 font-semibold text-orange-500 transition-colors hover:text-orange-600">
+          View all verified certifications
+          <svg class="h-4 w-4" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+        </a>
+        
+        <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Beyond Work</h2>
+        <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+          When I'm not automating infrastructure, you'll find me writing technical articles on Dev.to and Medium, 
+          experimenting with new tools, or contributing to open-source projects. I believe in sharing knowledge 
+          and helping others grow in their cloud and DevOps journeys.
+        </p>
+        
+        <div class="mt-10 flex flex-wrap gap-4">
+          <a href="/projects" class="inline-flex items-center gap-2 px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-lg transition-colors">
+            View My Projects
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+          <a href="/contact" class="inline-flex items-center gap-2 px-6 py-3 border-2 border-slate-300 dark:border-slate-700 hover:border-orange-500 text-slate-600 dark:text-slate-300 font-semibold rounded-lg transition-colors">
+            Get in Touch
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Layout>
