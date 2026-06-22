@@ -17,8 +17,14 @@ pnpm-debug.log*
 .env
 .env.production
 
+# local project notes
+portfolio-website-requirements.txt
+
 # macOS-specific files
 .DS_Store
+
+# Windows download metadata
+*:Zone.Identifier
 
 # jetbrains setting folder
 .idea/

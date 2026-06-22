@@ -2,24 +2,40 @@
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/sections/Footer.astro';
-import { certifications } from '../data/certifications';
+import { certifications, trainingCredentials } from '../data/certifications';
+
+const credentialItems = [
+  ...certifications.map((credential) => ({
+    name: credential.name,
+    description: credential.description,
+    category: credential.level,
+    issuer: credential.issuer,
+    url: credential.credentialUrl,
+  })),
+  ...trainingCredentials.map((credential) => ({
+    name: credential.name,
+    description: credential.description,
+    category: credential.category,
+    issuer: credential.issuer,
+  })),
+];
 
 const certificationSchema = {
   '@context': 'https://schema.org',
   '@type': 'ItemList',
   name: 'Goodness Ojonuba certifications',
-  itemListElement: certifications.map((certification, index) => ({
+  itemListElement: credentialItems.map((credential, index) => ({
     '@type': 'ListItem',
     position: index + 1,
     item: {
       '@type': 'EducationalOccupationalCredential',
-      name: certification.name,
-      description: certification.description,
-      credentialCategory: certification.level,
-      url: certification.credentialUrl,
+      name: credential.name,
+      description: credential.description,
+      credentialCategory: credential.category,
+      ...(credential.url ? { url: credential.url } : {}),
       recognizedBy: {
         '@type': 'Organization',
-        name: certification.issuer,
+        name: credential.issuer,
       },
     },
   })),
@@ -27,8 +43,8 @@ const certificationSchema = {
 ---
 
 <Layout
-  title="Certifications | Goodness Ojonuba - Cloud & DevOps Engineer"
-  description="Verified AWS certifications earned by Goodness Ojonuba, including AWS Solutions Architect Associate and AWS Cloud Practitioner."
+  title="Certifications & Training | Goodness Ojonuba - Cloud & DevOps Engineer"
+  description="Professional AWS certifications and hands-on cloud engineering and DevOps training completed by Goodness Ojonuba."
 >
   <script slot="head" type="application/ld+json" set:html={JSON.stringify(certificationSchema)} />
   <Navbar />
@@ -89,6 +105,69 @@ const certificationSchema = {
             </div>
           </article>
         ))}
+      </section>
+
+      <section aria-labelledby="training-heading" class="mt-20 border-t border-slate-200 pt-16 dark:border-slate-800">
+        <header class="max-w-3xl">
+          <p class="text-sm font-semibold uppercase tracking-[0.2em] text-orange-500">Education & applied training</p>
+          <h2 id="training-heading" class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl dark:text-white">
+            Hands-on <span class="text-orange-500">Programs</span>
+          </h2>
+          <p class="mt-4 text-lg leading-relaxed text-slate-500 dark:text-slate-400">
+            Structured learning and practical programs that strengthened my cloud engineering, automation, and delivery skills. These are listed separately from my professional AWS certifications.
+          </p>
+        </header>
+
+        <div class="mt-10 grid gap-7 md:grid-cols-2 xl:grid-cols-3">
+          {trainingCredentials.map((credential) => (
+            <article class="flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-all hover:border-orange-500/40 hover:shadow-xl dark:border-slate-800 dark:bg-slate-900">
+              <a
+                href={credential.image}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex aspect-[16/10] items-center justify-center overflow-hidden bg-slate-100 p-3 dark:bg-slate-950"
+                aria-label={`View ${credential.name} certificate`}
+              >
+                <img
+                  src={credential.image}
+                  alt={`${credential.name} certificate issued by ${credential.issuer}`}
+                  width={credential.imageWidth}
+                  height={credential.imageHeight}
+                  loading="lazy"
+                  decoding="async"
+                  class="h-full w-full object-contain transition-transform duration-500 hover:scale-[1.02]"
+                />
+              </a>
+
+              <div class="flex flex-1 flex-col p-6">
+                <div class="flex flex-wrap items-center gap-2">
+                  <span class="rounded-full bg-orange-100 px-3 py-1 text-xs font-semibold text-orange-700 dark:bg-orange-950/40 dark:text-orange-300">{credential.category}</span>
+                  <span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-600 dark:bg-slate-800 dark:text-slate-300">{credential.year}</span>
+                </div>
+
+                <h3 class="mt-5 text-xl font-bold leading-tight text-slate-900 dark:text-white">{credential.name}</h3>
+                <p class="mt-2 text-sm font-medium text-orange-500">{credential.issuer}</p>
+                <p class="mt-4 flex-1 leading-relaxed text-slate-600 dark:text-slate-300">{credential.description}</p>
+
+                <div class="mt-5 flex flex-wrap gap-2">
+                  {credential.capabilities.map((capability) => (
+                    <span class="rounded-md bg-slate-100 px-2.5 py-1 text-xs text-slate-600 dark:bg-slate-800 dark:text-slate-300">{capability}</span>
+                  ))}
+                </div>
+
+                <a
+                  href={credential.image}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="mt-7 inline-flex items-center gap-2 self-start font-semibold text-orange-500 transition-colors hover:text-orange-600"
+                >
+                  View certificate
+                  <svg class="h-4 w-4" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4m-2-10h6m0 0v6m0-6L10 14" /></svg>
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
       </section>
     </div>
   </main>
