@@ -193,3 +193,37 @@ export const mediumArticles = [
     url: 'https://medium.com/@goodnessojonuba/from-clickops-to-terraform-my-first-real-experience-with-infrastructure-as-code-ec99048719fb',
   },
 ];
+
+export const hashnodeArticles = [
+  {
+    title: 'Deploying Spring Petclinic Microservices Locally with Docker Compose',
+    excerpt: 'A practical guide to running the complete Spring Petclinic microservices stack locally with Docker Compose, including service dependencies, networking, and validation.',
+    date: 'Jun 2026',
+    readTime: 'Technical guide',
+    tags: ['docker-compose', 'microservices', 'spring-boot'],
+    url: 'https://goodnessoj.hashnode.dev/deploying-spring-petclinic-microservices-locally-with-docker-compose',
+  },
+  {
+    title: 'How We Built and Automated Spring Petclinic Microservices on AWS EKS',
+    excerpt: 'A platform engineering case study covering how Spring Petclinic was automated on EKS with Terraform, Helm, GitOps, CI/CD, and observability.',
+    date: 'Jun 2026',
+    readTime: 'Case study',
+    tags: ['kubernetes', 'terraform', 'gitops'],
+    url: 'https://goodnessoj.hashnode.dev/how-we-built-and-automated-spring-petclinic-microservices-on-aws-eks',
+  },
+];
+
+/* Curated by technical depth and portfolio relevance, not publication date. */
+export const rankedArticles = [
+  { ...hashnodeArticles[1], platform: 'Hashnode' as const },
+  { ...hashnodeArticles[0], platform: 'Hashnode' as const },
+  { ...mediumArticles[0], platform: 'Medium' as const },
+  { ...mediumArticles[2], platform: 'Medium' as const },
+  { ...devtoArticles[0], platform: 'Dev.to' as const },
+  { ...mediumArticles[1], platform: 'Medium' as const },
+  { ...mediumArticles[3], platform: 'Medium' as const },
+  { ...mediumArticles[4], platform: 'Medium' as const },
+  { ...devtoArticles[1], platform: 'Dev.to' as const },
+  { ...devtoArticles[2], platform: 'Dev.to' as const },
+  { ...devtoArticles[3], platform: 'Dev.to' as const },
+];

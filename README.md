@@ -35,7 +35,7 @@ A modern, fast, and responsive personal portfolio website built with Astro and T
 | About | `/about` | Extended biography, certifications |
 | Projects | `/projects` | Curated projects and engineering case studies |
 | Certifications | `/certifications` | Verified AWS credentials |
-| Blog | `/blog` | Dev.to and Medium articles |
+| Blog | `/blog` | Curated Hashnode, Dev.to, and Medium articles |
 | Contact | `/contact` | Contact form and social links |
 | 404 | `/404` | Not found page |
 
