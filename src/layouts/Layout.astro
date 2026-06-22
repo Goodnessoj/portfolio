@@ -97,5 +97,29 @@ const siteURL = Astro.site?.toString().replace(/\/$/, '') ?? 'https://goodnessoj
 </head>
 <body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300">
   <slot />
+  <script is:inline>
+    (() => {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+      const sections = document.querySelectorAll('body > section, main section');
+      const observer = new IntersectionObserver((entries, revealObserver) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.setAttribute('data-reveal', 'visible');
+          revealObserver.unobserve(entry.target);
+        });
+      }, {
+        rootMargin: '0px 0px -8% 0px',
+        threshold: 0.08,
+      });
+
+      sections.forEach((section) => {
+        /* The hero has its own entrance and should be immediately available. */
+        if (section.querySelector('.hero-copy')) return;
+        section.setAttribute('data-reveal', 'pending');
+        observer.observe(section);
+      });
+    })();
+  </script>
 </body>
 </html>

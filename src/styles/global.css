@@ -1,1 +1,160 @@
 @import "tailwindcss";
+
+/* Restrained motion system ------------------------------------------------- */
+:root {
+  --motion-fast: 180ms;
+  --motion-base: 320ms;
+  --motion-slow: 620ms;
+  --motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Sections stay visible without JavaScript; the layout script opts them in. */
+[data-reveal="pending"] {
+  opacity: 0;
+  transform: translateY(22px);
+}
+
+[data-reveal="visible"] {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity var(--motion-slow) var(--motion-ease),
+    transform var(--motion-slow) var(--motion-ease);
+}
+
+.hero-copy {
+  animation: hero-copy-in 700ms var(--motion-ease) both;
+}
+
+.hero-portrait {
+  animation: hero-portrait-in 800ms 120ms var(--motion-ease) both;
+}
+
+.hero-glow {
+  animation: glow-drift 10s ease-in-out infinite alternate;
+}
+
+.hero-glow-delayed {
+  animation-delay: -4s;
+}
+
+@keyframes hero-copy-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-portrait-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes glow-drift {
+  from { transform: translate3d(-8px, -4px, 0) scale(0.98); }
+  to { transform: translate3d(10px, 8px, 0) scale(1.04); }
+}
+
+/* Existing bordered groups are the site's project, skill, and article cards. */
+article[class*="rounded"][class*="border"],
+.group[class*="rounded"][class*="border"] {
+  transition:
+    transform var(--motion-base) var(--motion-ease),
+    box-shadow var(--motion-base) ease,
+    border-color var(--motion-fast) ease,
+    background-color var(--motion-base) ease;
+}
+
+@media (hover: hover) {
+  article[class*="rounded"][class*="border"]:hover,
+  .group[class*="rounded"][class*="border"]:hover {
+    transform: translateY(-4px);
+  }
+
+  a[class*="rounded-lg"][class*="font-semibold"] {
+    transition:
+      transform var(--motion-fast) var(--motion-ease),
+      color var(--motion-fast) ease,
+      background-color var(--motion-fast) ease,
+      border-color var(--motion-fast) ease,
+      opacity var(--motion-fast) ease;
+  }
+
+  a[class*="rounded-lg"][class*="font-semibold"]:hover {
+    transform: translateY(-2px);
+  }
+
+  a[class*="rounded-lg"][class*="font-semibold"]:active {
+    transform: translateY(0);
+  }
+}
+
+.nav-link {
+  position: relative;
+  padding-block: 0.35rem;
+}
+
+.nav-link::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  content: "";
+  background: #f97316;
+  border-radius: 999px;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform var(--motion-base) var(--motion-ease);
+}
+
+.nav-link:hover::after,
+.nav-link[aria-current="page"]::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+#theme-toggle svg {
+  transition: transform var(--motion-base) var(--motion-ease);
+}
+
+#theme-toggle:hover svg {
+  transform: rotate(14deg) scale(1.08);
+}
+
+html.theme-switching *,
+html.theme-switching *::before,
+html.theme-switching *::after {
+  transition-property: color, background-color, border-color, fill, stroke !important;
+  transition-duration: var(--motion-base) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

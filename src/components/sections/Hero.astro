@@ -5,14 +5,14 @@ import { GitStats } from '../../data/projects';
 <section class="relative min-h-screen flex items-center pt-16 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
   <!-- Background decoration -->
   <div class="absolute inset-0 -z-10">
-    <div class="absolute top-20 left-10 w-72 h-72 bg-orange-500/10 dark:bg-orange-500/5 rounded-full blur-3xl"></div>
-    <div class="absolute bottom-20 right-10 w-96 h-96 bg-blue-500/10 dark:bg-blue-500/5 rounded-full blur-3xl"></div>
+    <div class="hero-glow absolute top-20 left-10 w-72 h-72 bg-orange-500/10 dark:bg-orange-500/5 rounded-full blur-3xl"></div>
+    <div class="hero-glow hero-glow-delayed absolute bottom-20 right-10 w-96 h-96 bg-blue-500/10 dark:bg-blue-500/5 rounded-full blur-3xl"></div>
   </div>
   
   <div class="max-w-7xl mx-auto w-full">
     <div class="grid lg:grid-cols-2 gap-12 items-center">
       <!-- Text Content -->
-      <div class="order-1 space-y-8">
+      <div class="hero-copy order-1 space-y-8">
         <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-100 dark:bg-orange-950/30 text-orange-700 dark:text-orange-300 text-sm font-medium">
           <span class="relative flex h-2 w-2">
             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
@@ -97,7 +97,7 @@ import { GitStats } from '../../data/projects';
       </div>
       
       <!-- Professional portrait -->
-      <div class="order-2">
+      <div class="hero-portrait order-2">
         <div class="relative mx-auto max-w-md">
           <div class="absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-orange-500/30 via-orange-500/5 to-blue-500/20 blur-2xl" aria-hidden="true"></div>
           <div class="relative overflow-hidden rounded-[2rem] border border-white/20 bg-slate-900 shadow-2xl ring-1 ring-slate-900/10 dark:ring-white/10">
