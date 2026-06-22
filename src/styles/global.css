@@ -11,40 +11,63 @@
 /* Sections stay visible without JavaScript; the layout script opts them in. */
 [data-reveal="pending"] {
   opacity: 0;
-  transform: translateY(22px);
+  filter: blur(3px);
+  transform: translateY(44px) scale(0.985);
 }
 
 [data-reveal="visible"] {
   opacity: 1;
-  transform: translateY(0);
+  filter: blur(0);
+  transform: translateY(0) scale(1);
   transition:
-    opacity var(--motion-slow) var(--motion-ease),
-    transform var(--motion-slow) var(--motion-ease);
+    opacity 800ms var(--motion-ease),
+    transform 800ms var(--motion-ease),
+    filter 650ms ease;
 }
 
-.hero-copy {
-  animation: hero-copy-in 700ms var(--motion-ease) both;
+.hero-copy > * {
+  animation: hero-item-in 760ms var(--motion-ease) both;
+}
+
+.hero-copy > :nth-child(1) { animation-delay: 80ms; }
+.hero-copy > :nth-child(2) { animation-delay: 160ms; }
+.hero-copy > :nth-child(3) { animation-delay: 240ms; }
+.hero-copy > :nth-child(4) { animation-delay: 320ms; }
+.hero-copy > :nth-child(5) { animation-delay: 400ms; }
+.hero-copy > :nth-child(6) { animation-delay: 480ms; }
+.hero-copy > :nth-child(7) { animation-delay: 560ms; }
+
+.hero-copy svg {
+  transition: transform var(--motion-base) var(--motion-ease);
+}
+
+.hero-copy a:hover svg {
+  transform: translateX(3px) scale(1.06);
 }
 
 .hero-portrait {
-  animation: hero-portrait-in 800ms 120ms var(--motion-ease) both;
+  animation:
+    hero-portrait-in 950ms 180ms var(--motion-ease) both,
+    portrait-float 6s 1.3s ease-in-out infinite alternate;
 }
 
 .hero-glow {
-  animation: glow-drift 10s ease-in-out infinite alternate;
+  animation: glow-drift 8s ease-in-out infinite alternate;
 }
 
 .hero-glow-delayed {
   animation-delay: -4s;
 }
 
-@keyframes hero-copy-in {
+@keyframes hero-item-in {
   from {
     opacity: 0;
-    transform: translateY(18px);
+    filter: blur(4px);
+    transform: translateY(32px);
   }
   to {
     opacity: 1;
+    filter: blur(0);
     transform: translateY(0);
   }
 }
@@ -52,17 +75,24 @@
 @keyframes hero-portrait-in {
   from {
     opacity: 0;
-    transform: translateY(18px) scale(0.98);
+    filter: blur(5px);
+    transform: translateY(42px) scale(0.94);
   }
   to {
     opacity: 1;
+    filter: blur(0);
     transform: translateY(0) scale(1);
   }
 }
 
+@keyframes portrait-float {
+  from { transform: translateY(0); }
+  to { transform: translateY(-10px); }
+}
+
 @keyframes glow-drift {
-  from { transform: translate3d(-8px, -4px, 0) scale(0.98); }
-  to { transform: translate3d(10px, 8px, 0) scale(1.04); }
+  from { transform: translate3d(-14px, -8px, 0) scale(0.96); }
+  to { transform: translate3d(22px, 16px, 0) scale(1.08); }
 }
 
 /* Existing bordered groups are the site's project, skill, and article cards. */
@@ -78,7 +108,8 @@ article[class*="rounded"][class*="border"],
 @media (hover: hover) {
   article[class*="rounded"][class*="border"]:hover,
   .group[class*="rounded"][class*="border"]:hover {
-    transform: translateY(-4px);
+    box-shadow: 0 18px 45px -20px rgb(249 115 22 / 0.35);
+    transform: translateY(-7px) scale(1.008);
   }
 
   a[class*="rounded-lg"][class*="font-semibold"] {
@@ -91,7 +122,7 @@ article[class*="rounded"][class*="border"],
   }
 
   a[class*="rounded-lg"][class*="font-semibold"]:hover {
-    transform: translateY(-2px);
+    transform: translateY(-3px) scale(1.02);
   }
 
   a[class*="rounded-lg"][class*="font-semibold"]:active {
