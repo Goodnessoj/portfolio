@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Let the navbar toggle control dark mode instead of the OS preference alone. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* Restrained motion system ------------------------------------------------- */
 :root {
   --motion-fast: 180ms;
