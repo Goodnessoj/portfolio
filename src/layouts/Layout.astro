@@ -18,7 +18,7 @@ const siteURL = Astro.site?.toString().replace(/\/$/, '') ?? 'https://goodnessoj
 ---
 
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="dark scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -90,10 +90,10 @@ const siteURL = Astro.site?.toString().replace(/\/$/, '') ?? 'https://goodnessoj
   <script is:inline>
     (function() {
       const theme = localStorage.getItem('theme');
-      if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-        document.documentElement.classList.add('dark');
-      } else {
+      if (theme === 'light') {
         document.documentElement.classList.remove('dark');
+      } else {
+        document.documentElement.classList.add('dark');
       }
     })();
   </script>
