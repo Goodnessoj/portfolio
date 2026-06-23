@@ -10,7 +10,7 @@ export type Certification = {
 
 export const certifications: Certification[] = [
   {
-    name: 'AWS Certified Solutions Architect – Associate',
+    name: 'AWS Certified Solutions Architect Associate',
     level: 'Associate',
     issuer: 'Amazon Web Services Training and Certification',
     image: '/images/certifications/aws-solutions-architect-associate.png',
@@ -59,7 +59,7 @@ export const trainingCredentials: TrainingCredential[] = [
   {
     name: 'Diploma in Cloud Engineering',
     category: 'Diploma',
-    issuer: 'AltSchool Africa — School of Engineering',
+    issuer: 'AltSchool Africa, School of Engineering',
     year: '2024',
     image: '/images/certifications/altschool-cloud-engineering.png',
     imageWidth: 995,
